@@ -20,7 +20,7 @@ const {
 const MovieListType = new GraphQLObjectType({
   name: "MovieList",
   fields: () => ({
-    isMOvie: { type: GraphQLBoolean },
+    isMovie: { type: GraphQLBoolean },
     title: { type: GraphQLString },
     release_date: { type: GraphQLString },
     id: { type: GraphQLID },
