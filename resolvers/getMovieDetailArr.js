@@ -1,15 +1,8 @@
 const axios = require("axios");
 const { getURL } = require("../helperFunctions/getURL");
-// const axios = require("axios");
-const basePosterUrl = `https://image.tmdb.org/t/p/`;
-const baseActorFaceUrl = `https://image.tmdb.org/t/p/w66_and_h66_face/`;
-const youtubeBseUrl = `https://www.youtube.com/watch?v=`;
-// let popular_url = `https://api.themoviedb.org/3/movie/popular?api_key=${dbKey}&language=en-US&page=1`;
 
 const getMovieDetailArr = async (movie_id) => {
   //
-
-  // console.log("the arguments from parent!!!", movie_id);
   let idArr = [];
 
   for (const id of movie_id) {

@@ -23,6 +23,7 @@ app.use(
   })
 );
 
+/*
 // set a static folder
 app.use(express.static("public")); // we are saying that we want the 'public' to be our static folder
 
@@ -30,6 +31,7 @@ app.use(express.static("public")); // we are saying that we want the 'public' to
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname), "public", index.html);
 });
+*/
 
 // we create a variable and we set it to the environment variable
 // so that when we deploy to Heroku it will read that or || 5000
