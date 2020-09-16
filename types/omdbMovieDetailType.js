@@ -23,6 +23,8 @@ const OMDB_MovieDetailType = new GraphQLObjectType({
     Director: { type: GraphQLString },
     Writer: { type: GraphQLString },
     Awards: { type: GraphQLString },
+    Production: { type: GraphQLString },
+    imdbRating: { type: GraphQLString },
   }),
 });
 

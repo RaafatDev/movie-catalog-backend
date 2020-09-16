@@ -11,11 +11,13 @@ const getMovieDetail = async (movie_id, isMovie) => {
 
   try {
     const tmdb_data = await axios(tmdb_url).then((data) => data.data);
+
     const tmdb_sorted = await getSortedTMDB(tmdb_data);
 
     const imdb_id = tmdb_data.external_ids.imdb_id;
     if (imdb_id) {
       omdb_url = getURL("OMDB", imdb_id);
+      console.log("the data from Server: ", omdb_url);
 
       try {
         const omdb_data = await axios.get(omdb_url).then((data) => data.data);
