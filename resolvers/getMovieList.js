@@ -63,12 +63,12 @@ const getMovieSorted = (movie) => {
     id: movie.id,
     poster_path: movie.poster_path
       ? // ? `${basePosterUrl}w1280${movie.poster_path}`
-        `${basePosterUrl}w300${movie.poster_path}`
-      : `${process.env.PUBLIC_URL}/img/no_image.png`,
+        `${basePosterUrl}w780${movie.poster_path}`
+      : "no_image",
     backdrop_path: movie.backdrop_path
       ? // ? `${basePosterUrl}w1280${movie.backdrop_path}`
         `${basePosterUrl}w780${movie.backdrop_path}`
-      : `${process.env.PUBLIC_URL}/img/no_image.png`, // todo : give a valid url for image incase there is no img_ url
+      : "no_image",
     overview: movie.overview,
     genre_ids: movie.genre_ids,
   };

@@ -58,10 +58,12 @@ const getSortedTMDB = (tmdb_data) => {
       : tmdb_data.first_air_date,
     poster_path: tmdb_data.poster_path
       ? `${basePosterUrl}w780${tmdb_data.poster_path}`
-      : `${process.env.PUBLIC_URL}/img/no_image.png`,
+      : // : `${process.env.PUBLIC_URL}/img/no_image.png`,
+        "no_image",
     backdrop_path: tmdb_data.backdrop_path
       ? `${basePosterUrl}w780${tmdb_data.backdrop_path}`
-      : `${process.env.PUBLIC_URL}/img/no_image.png`,
+      : // : `${process.env.PUBLIC_URL}/img/no_image.png`,
+        "no_image",
     overview: tmdb_data.overview,
     credits: tmdb_data.credits.cast,
     budget: tmdb_data.budget,
