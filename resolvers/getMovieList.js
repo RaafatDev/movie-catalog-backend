@@ -31,21 +31,22 @@ const getMovieList = async (keyword, searchTerm = "") => {
   if (keyword === "SEARCH" && searchTerm === "") return;
 
   // console.log("the url from the server for search: ", url);
-  let arr = [];
+  let movieArr = [];
   const data = await axios.get(url);
 
   for await (movie of data.data.results) {
-    if (movie.media_type === "person") {
-      for await (m of movie.known_for) {
-        const test = getMovieSorted(m);
-        arr.push(test);
+    // if a the media_type === "person" => that means the object has an array of movies under the known_for element!
+    if (movie.media_type && movie.media_type === "person") {
+      for await (movieOfPerson of movie.known_for) {
+        const sortedMovieOfPerson = getMovieSorted(movieOfPerson);
+        movieArr.push(sortedMovieOfPerson);
       }
     } else {
-      const test = getMovieSorted(movie);
-      arr.push(test);
+      const sortedMovie = getMovieSorted(movie);
+      movieArr.push(sortedMovie);
     }
   }
-  return arr;
+  return movieArr;
 };
 
 module.exports = {
@@ -53,7 +54,6 @@ module.exports = {
 };
 
 const getMovieSorted = (movie) => {
-  console.log("insie the getMovieSorted() !!!! ");
   return {
     isMovie: movie.title ? true : false,
     title: movie.title ? movie.title : movie.name,
