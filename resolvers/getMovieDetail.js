@@ -1,13 +1,12 @@
 const axios = require("axios");
-const { getURL } = require("../helperFunctions/getURL");
+const { getMovieURL } = require("../helperFunctions/getMovieURL");
 const basePosterUrl = `https://image.tmdb.org/t/p/`; // w1280 // w300 // w780 //
 
 const getMovieDetail = async (movie_id, isMovie) => {
   //
-  console.log("getOnnnne Movie Detail");
 
   let sorted = {};
-  tmdb_url = getURL("TMDB_MOVIE", movie_id, isMovie);
+  tmdb_url = getMovieURL("TMDB_MOVIE", { isMovie, movie_id });
 
   try {
     const tmdb_data = await axios(tmdb_url).then((data) => data.data);
@@ -16,8 +15,7 @@ const getMovieDetail = async (movie_id, isMovie) => {
 
     const imdb_id = tmdb_data.external_ids.imdb_id;
     if (imdb_id) {
-      omdb_url = getURL("OMDB", imdb_id);
-      console.log("the data from Server: ", omdb_url);
+      omdb_url = getMovieURL("OMDB", { imdb_id });
 
       try {
         const omdb_data = await axios.get(omdb_url).then((data) => data.data);

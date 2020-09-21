@@ -1,13 +1,13 @@
 const axios = require("axios");
-const { getURL } = require("../helperFunctions/getURL");
+const { getMovieURL } = require("../helperFunctions/getMovieURL");
 
-const getMovieDetailArr = async (movie_id) => {
+const getMovieDetailArr = async (imdb_id_arr) => {
   //
   let idArr = [];
 
-  for (const id of movie_id) {
+  for (const imdb_id of imdb_id_arr) {
     //
-    const omdb_url = getURL("OMDB", id);
+    const omdb_url = getMovieURL("OMDB", { imdb_id });
 
     let res = await axios.get(omdb_url);
 

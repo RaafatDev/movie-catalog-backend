@@ -1,26 +1,12 @@
 const axios = require("axios");
-// const getURL = require("../helperFunctions/getURL");
 const basePosterUrl = `https://image.tmdb.org/t/p/`;
+const { getMovieListURL } = require("../helperFunctions/getMovieListURL");
 
-const getMovieList = async (keyword, searchTerm = "") => {
-  // console.log("paraaaa: ", keyword, searchTerm);
-  // console.log("getMovieDetailARRRRR");
-  let url;
+// const getMovieList = async (keyword, searchTerm = "") => {
+const getMovieList = async (keyword, { searchTerm = "", genre = "" } = {}) => {
+  //
+  const url = getMovieListURL(keyword, { searchTerm, genre });
 
-  if (keyword === "MOVIE_POPULAR") {
-    // let popular_url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
-    url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
-  } else if (keyword === "TV_POPULAR") {
-    // https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
-    url = `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1&append_to_response=external_ids`;
-  } else if (keyword === "SEARCH") {
-    url = `https://api.themoviedb.org/3/search/multi?api_key=${process.env.TMDB_API_KEY}&language=en-US&query=${searchTerm}&page=1&include_adult=false`;
-    // url = `https://api.themoviedb.org/3/search/multi?api_key=${process.env.TMDB_API_KEY}&language=en-US&query=${searchTerm}&page=1&include_adult=false`
-  } else {
-    console.log("the given KEYWORD is not Correct!");
-  }
-
-  // console.log("the url: ", url);
   console.log(
     "the getMovieList() is called: the keyword ",
     keyword,
@@ -30,7 +16,6 @@ const getMovieList = async (keyword, searchTerm = "") => {
 
   if (keyword === "SEARCH" && searchTerm === "") return;
 
-  // console.log("the url from the server for search: ", url);
   let movieArr = [];
   const data = await axios.get(url);
 

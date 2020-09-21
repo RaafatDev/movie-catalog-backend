@@ -31,15 +31,23 @@ const RootQuery = new GraphQLObjectType({
     searchMovieList: {
       type: new GraphQLList(MovieListType),
       args: { searchTerm: { type: GraphQLString } },
-      resolve: async (parent, args) => getMovieList("SEARCH", args.searchTerm),
+      resolve: async (parent, args) =>
+        getMovieList("SEARCH", { searchTerm: args.searchTerm }),
     },
+    genreMovieList: {
+      type: new GraphQLList(MovieListType),
+      args: { genre: { type: GraphQLString } },
+      resolve: async (parent, args) =>
+        getMovieList("LIST_BASED_ON_GENRE", { genre: args.genre }),
+    },
+
     omdbMovieDetails: {
       type: new GraphQLList(OMDB_MovieDetailType),
       args: {
-        // ids: ["tt11576124", "tt7550000"]
-        ids: { type: new GraphQLList(GraphQLString) },
+        // imdb_id_arr: ["tt11576124", "tt7550000"]
+        imdb_id_arr: { type: new GraphQLList(GraphQLString) },
       },
-      resolve: async (parent, args) => getMovieDetailArr(args.ids),
+      resolve: async (parent, args) => getMovieDetailArr(args.imdb_id_arr),
     },
     movieDetail: {
       type: MovieDetailType,
